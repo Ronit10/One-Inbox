@@ -1,0 +1,20 @@
+{
+  "name": "one-inbox-connector",
+  "version": "1.0.0",
+  "description": "Claude connector that reads any number of Gmail, Microsoft 365 and Slack accounts",
+  "type": "module",
+  "main": "src/server.js",
+  "private": true,
+  "scripts": {
+    "start": "node src/server.js",
+    "smoke": "node test/smoke.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "express": "^5.3.0",
+    "zod": "^3.25.76"
+  }
+}

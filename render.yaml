@@ -1,0 +1,42 @@
+# Render blueprint: Render → New → Blueprint → pick this repo.
+# Values marked `sync: false` are asked for in the Render dashboard (never committed).
+services:
+  - type: web
+    name: one-inbox-connector
+    runtime: node
+    plan: starter            # paid plan: always on, and required for a persistent disk
+    region: singapore
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /healthz
+    disk:
+      name: inbox-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATA_DIR
+        value: /var/data
+      - key: SECRET_KEY
+        generateValue: true  # random, made once by Render; never change it later
+      - key: BASE_URL
+        sync: false          # e.g. https://one-inbox-connector.onrender.com
+      - key: ALLOWED_SIGNIN_DOMAINS
+        value: raptbot.in
+      - key: ALLOWED_LINK_DOMAINS
+        value: ""
+      - key: MS_TENANT
+        value: common
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: MS_CLIENT_ID
+        sync: false
+      - key: MS_CLIENT_SECRET
+        sync: false
+      - key: SLACK_CLIENT_ID
+        sync: false
+      - key: SLACK_CLIENT_SECRET
+        sync: false
